@@ -728,6 +728,7 @@
     <div class="pill-group">
       <button class="pill-btn active" id="tab-specimen" onclick="switchTab('specimen')">Specimen</button>
       <button class="pill-btn"        id="tab-tester"   onclick="switchTab('tester')">Type Tester</button>
+      <button class="pill-btn"        id="tab-arcade"   onclick="switchTab('arcade')">Arcade 0.3</button>
     </div>
 
     <div class="toolbar-sep"></div>
@@ -1046,6 +1047,268 @@ The quick brown fox jumps over the lazy dog.
 
     </div><!-- /panel-tester -->
 
+    <!-- ═══════════════════════════════════════════
+         ARCADE 0.3 — DEVICE VARIABLES CATALOGUE
+    ═══════════════════════════════════════════ -->
+    <div class="tab-panel" id="panel-arcade">
+
+      <div class="arc-weight-note">
+        <strong>Optical weights:</strong>&nbsp; Arcade adjusts font weight per mode — Regular 460→440, Medium 520→500, Bold 650→620 (light→dark). Toggle Desktop / Mobile above to preview each breakpoint.
+      </div>
+
+      <!-- ── TYPOGRAPHY: TITLES ── -->
+      <div class="arc-sec" style="margin-top:0;">
+        <div class="arc-hdr">
+          <span class="arc-hdr-name">Titles</span>
+          <span class="arc-hdr-detail">Chip Display Variable · Bold (650 / 620)</span>
+        </div>
+
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Title Large</div><div class="arc-row-sub">Typography/TitleLarge<br>Display · Bold</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":40,"lh":46,"ls":0}' data-m='{"sz":44,"lh":46,"ls":0}' style="font-family:'Chip Display','Inter',sans-serif;font-weight:700;color:var(--ink);">The quick brown fox jumps over the lazy dog</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">40px / 46lh / 0ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">44px / 46lh / 0ls</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Title 1</div><div class="arc-row-sub">Typography/Title1<br>Display · Bold</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":33,"lh":40,"ls":0}' data-m='{"sz":36,"lh":38,"ls":0}' style="font-family:'Chip Display','Inter',sans-serif;font-weight:700;color:var(--ink);">The quick brown fox jumps over the lazy dog</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">33px / 40lh / 0ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">36px / 38lh / 0ls</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Title 2</div><div class="arc-row-sub">Typography/Title2<br>Display · Bold</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":27,"lh":36,"ls":0}' data-m='{"sz":30,"lh":32,"ls":0}' style="font-family:'Chip Display','Inter',sans-serif;font-weight:700;color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">27px / 36lh / 0ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">30px / 32lh / 0ls</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Title 3</div><div class="arc-row-sub">Typography/Title3<br>Display · Bold</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":22,"lh":28,"ls":0}' data-m='{"sz":25,"lh":28,"ls":0}' style="font-family:'Chip Display','Inter',sans-serif;font-weight:700;color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">22px / 28lh / 0ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">25px / 28lh / 0ls</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TYPOGRAPHY: BODY ── -->
+      <div class="arc-sec">
+        <div class="arc-hdr">
+          <span class="arc-hdr-name">Body</span>
+          <span class="arc-hdr-detail">Chip Text Variable · Regular (460 / 440) and Bold (650 / 620)</span>
+        </div>
+
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Body Large</div><div class="arc-row-sub">Typography/Body Large<br>Text · Regular</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":19,"lh":26,"ls":-0.19}' data-m='{"sz":20,"lh":26,"ls":-0.20}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:400;color:var(--ink);">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">19px / 26lh / −0.19ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">20px / 26lh / −0.20ls</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Body Large Bold</div><div class="arc-row-sub">Typography/Body Large Bold<br>Text · Bold</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":19,"lh":26,"ls":-0.19}' data-m='{"sz":20,"lh":26,"ls":-0.20}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:700;color:var(--ink);">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">= Body Large</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">= Body Large</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Body</div><div class="arc-row-sub">Typography/Body<br>Text · Regular</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":15,"lh":24,"ls":-0.15}' data-m='{"sz":16,"lh":24,"ls":-0.16}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:400;color:var(--ink);">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">15px / 24lh / −0.15ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">16px / 24lh / −0.16ls</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Body Bold</div><div class="arc-row-sub">Typography/Body Bold<br>Text · Bold</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":15,"lh":24,"ls":-0.15}' data-m='{"sz":16,"lh":24,"ls":-0.16}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:700;color:var(--ink);">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">= Body</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">= Body</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Body Small</div><div class="arc-row-sub">Typography/Body Small<br>Text · Regular</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":13,"lh":20,"ls":-0.13}' data-m='{"sz":16,"lh":22,"ls":-0.16}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:400;color:var(--ink);">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">13px / 20lh / −0.13ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">16px / 22lh / −0.16ls</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Body Small Bold</div><div class="arc-row-sub">Typography/Body Small Bold<br>Text · Bold</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":13,"lh":20,"ls":-0.13}' data-m='{"sz":16,"lh":22,"ls":-0.16}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:700;color:var(--ink);">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">= Body Small</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">= Body Small</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TYPOGRAPHY: SYSTEM ── -->
+      <div class="arc-sec">
+        <div class="arc-hdr">
+          <span class="arc-hdr-name">System</span>
+          <span class="arc-hdr-detail">Chip Text Variable · Regular (460 / 440) and Medium (520 / 500)</span>
+        </div>
+
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">System Large</div><div class="arc-row-sub">Typography/System Large<br>Text · Regular</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":15,"lh":20,"ls":-0.15}' data-m='{"sz":17,"lh":24,"ls":-0.16}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:400;color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">15px / 20lh / −0.15ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">17px / 24lh / −0.16ls</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">System</div><div class="arc-row-sub">Typography/System<br>Text · Regular</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":13,"lh":16,"ls":-0.13}' data-m='{"sz":14,"lh":20,"ls":-0.14}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:400;color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">13px / 16lh / −0.13ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">14px / 20lh / −0.14ls</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">System Medium</div><div class="arc-row-sub">Typography/System Medium<br>Text · Medium</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":13,"lh":16,"ls":-0.13}' data-m='{"sz":14,"lh":20,"ls":-0.14}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:500;color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">= System</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">= System</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">System Small</div><div class="arc-row-sub">Typography/System Small<br>Text · Regular</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":11,"lh":16,"ls":-0.11}' data-m='{"sz":12,"lh":20,"ls":-0.12}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:400;color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">11px / 16lh / −0.11ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">12px / 20lh / −0.12ls</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">System Small Medium</div><div class="arc-row-sub">Typography/System Small Medium<br>Text · Medium</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":11,"lh":16,"ls":-0.11}' data-m='{"sz":12,"lh":20,"ls":-0.12}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:500;color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">= System Small</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">= System Small</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Callout</div><div class="arc-row-sub">Typography/Callout<br>Text · Regular</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":12,"lh":18,"ls":-0.12}' data-m='{"sz":14,"lh":18,"ls":-0.14}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:400;color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">12px / 18lh / −0.12ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">14px / 18lh / −0.14ls</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Caption</div><div class="arc-row-sub">Typography/Caption<br>Text · Regular</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":10,"lh":16,"ls":-0.15}' data-m='{"sz":12,"lh":16,"ls":-0.12}' style="font-family:'Chip Text','Inter',sans-serif;font-weight:400;color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">10px / 16lh / −0.15ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">12px / 16lh / −0.12ls</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TYPOGRAPHY: CODE & NUMERICAL ── -->
+      <div class="arc-sec">
+        <div class="arc-hdr">
+          <span class="arc-hdr-name">Code &amp; Numerical</span>
+          <span class="arc-hdr-detail">Chip Mono · Medium (520 / 500) for Code · Regular (460 / 440) for Numerical</span>
+        </div>
+
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Code</div><div class="arc-row-sub">Typography/Code<br>Mono · Medium</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":13,"lh":18,"ls":-0.40}' data-m='{"sz":16,"lh":20,"ls":-0.20}' style="font-family:'Chip Mono','Roboto Mono',monospace;font-weight:500;color:var(--ink);font-feature-settings:'tnum' 1;">const token = device.resolve('Typography/Code');</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">13px / 18lh / −0.40ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">16px / 20lh / −0.20ls</span></div>
+          </div>
+        </div>
+        <div class="arc-row">
+          <div class="arc-row-label"><div class="arc-row-name">Numerical</div><div class="arc-row-sub">Typography/Numerical<br>Mono · Regular</div></div>
+          <div class="arc-row-sample"><span class="arc-ts" data-d='{"sz":10,"lh":10,"ls":0}' data-m='{"sz":11,"lh":11,"ls":0}' style="font-family:'Chip Mono','Roboto Mono',monospace;font-weight:400;color:var(--ink);font-feature-settings:'tnum' 1;">0 1 2 3 4 5 6 7 8 9   1,284   99.9%   −0.40   $4.20</span></div>
+          <div class="arc-row-spec">
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-d">D</span><span class="arc-spec-vals">10px / 10lh / 0ls</span></div>
+            <div class="arc-spec-badge"><span class="arc-spec-device arc-m">M</span><span class="arc-spec-vals">11px / 11lh / 0ls</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── COMPONENT: AVATAR ── -->
+      <div class="arc-sec">
+        <div class="arc-hdr">
+          <span class="arc-hdr-name">Avatar</span>
+          <span class="arc-hdr-detail">Component/Avatar/*</span>
+        </div>
+        <div class="arc-token-panel">
+          <table class="arc-token-table">
+            <thead>
+              <tr>
+                <th>Size</th>
+                <th>Preview</th>
+                <th>Diameter</th>
+                <th>Font</th>
+                <th>Font Mono</th>
+                <th>Stroke</th>
+              </tr>
+            </thead>
+            <tbody id="arc-avatar-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── CONTROLS, ICONS, GAPS ── -->
+      <div class="arc-sec">
+        <div class="arc-hdr">
+          <span class="arc-hdr-name">Controls &amp; Icons</span>
+          <span class="arc-hdr-detail">_Experiment/Components/*</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div class="arc-token-panel">
+            <div style="padding:8px 14px;border-bottom:1px solid var(--sep);font-family:var(--ff-text);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);background:var(--bg-alt);">Control Sizes</div>
+            <table class="arc-token-table"><thead><tr><th>Token</th><th class="arc-col-d">Desktop</th><th class="arc-col-m">Mobile</th></tr></thead><tbody id="arc-ctrl-tbody"></tbody></table>
+          </div>
+          <div class="arc-token-panel">
+            <div style="padding:8px 14px;border-bottom:1px solid var(--sep);font-family:var(--ff-text);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);background:var(--bg-alt);">Icon Sizes</div>
+            <table class="arc-token-table"><thead><tr><th>Token</th><th class="arc-col-d">Desktop</th><th class="arc-col-m">Mobile</th></tr></thead><tbody id="arc-icon-tbody"></tbody></table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CORNERS, GUTTERS, GAPS ── -->
+      <div class="arc-sec">
+        <div class="arc-hdr">
+          <span class="arc-hdr-name">Corners, Gutters &amp; Gaps</span>
+          <span class="arc-hdr-detail">_Experiment/Corners/* · _Experiment/Gutter/* · _Experiment/Components/Control/Gap/*</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;">
+          <div class="arc-token-panel">
+            <div style="padding:8px 14px;border-bottom:1px solid var(--sep);font-family:var(--ff-text);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);background:var(--bg-alt);">Corner Radius</div>
+            <table class="arc-token-table"><thead><tr><th>Token</th><th class="arc-col-d">D</th><th class="arc-col-m">M</th></tr></thead><tbody id="arc-corner-tbody"></tbody></table>
+          </div>
+          <div class="arc-token-panel">
+            <div style="padding:8px 14px;border-bottom:1px solid var(--sep);font-family:var(--ff-text);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);background:var(--bg-alt);">Gutters</div>
+            <table class="arc-token-table"><thead><tr><th>Token</th><th class="arc-col-d">D</th><th class="arc-col-m">M</th></tr></thead><tbody id="arc-gutter-tbody"></tbody></table>
+          </div>
+          <div class="arc-token-panel">
+            <div style="padding:8px 14px;border-bottom:1px solid var(--sep);font-family:var(--ff-text);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--sub);background:var(--bg-alt);">Control Gap</div>
+            <table class="arc-token-table"><thead><tr><th>Token</th><th class="arc-col-d">D</th><th class="arc-col-m">M</th></tr></thead><tbody id="arc-gap-tbody"></tbody></table>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /panel-arcade -->
+
   </div><!-- /page -->
 
   <script>
@@ -1053,10 +1316,126 @@ The quick brown fox jumps over the lazy dog.
 
     /* ── Tab switching ── */
     function switchTab(id) {
-      ['specimen','tester'].forEach(t => {
+      ['specimen','tester','arcade'].forEach(t => {
         document.getElementById('tab-' + t).classList.toggle('active', t === id);
         document.getElementById('panel-' + t).classList.toggle('active', t === id);
       });
+      const isArcade = id === 'arcade';
+      document.getElementById('group-font').style.display   = isArcade ? 'none' : '';
+      document.getElementById('group-device').style.display = isArcade ? ''     : 'none';
+    }
+
+    /* ── Device toggle (Arcade tab) ── */
+    let arcDevice = 'desktop';
+
+    function setDevice(dev) {
+      arcDevice = dev;
+      document.getElementById('dev-desktop').classList.toggle('active', dev === 'desktop');
+      document.getElementById('dev-mobile').classList.toggle('active',  dev === 'mobile');
+      applyDevice(dev);
+    }
+
+    function applyDevice(dev) {
+      const isD = dev === 'desktop';
+      // Update all arc-ts sample spans
+      document.querySelectorAll('.arc-ts').forEach(el => {
+        const vals = JSON.parse(isD ? el.dataset.d : el.dataset.m);
+        el.style.fontSize      = vals.sz + 'px';
+        el.style.lineHeight    = vals.lh + 'px';
+        el.style.letterSpacing = vals.ls + 'px';
+      });
+      // Highlight active spec badges
+      document.querySelectorAll('.arc-spec-device').forEach(el => {
+        el.classList.toggle('active',
+          (isD && el.classList.contains('arc-d')) ||
+          (!isD && el.classList.contains('arc-m'))
+        );
+      });
+      // Highlight active token table columns
+      document.querySelectorAll('.arc-col-d').forEach(el => el.style.color = isD  ? 'var(--ink)' : 'var(--sub)');
+      document.querySelectorAll('.arc-col-m').forEach(el => el.style.color = !isD ? 'var(--ink)' : 'var(--sub)');
+      document.querySelectorAll('td.arc-dv').forEach(el => el.style.color  = isD  ? 'var(--ink)' : 'var(--sub)');
+      document.querySelectorAll('td.arc-mv').forEach(el => el.style.color  = !isD ? 'var(--ink)' : 'var(--sub)');
+      // Update avatar previews
+      ARC_AVATARS.forEach(a => {
+        const v = isD ? a.d : a.m;
+        const el = document.getElementById('av-' + a.name);
+        if (el) { el.style.width = v.size+'px'; el.style.height = v.size+'px'; el.style.fontSize = v.fsm+'px'; }
+      });
+    }
+
+    /* ── Arcade token data ── */
+    const ARC_AVATARS = [
+      {name:'Small',    d:{size:16,fs:9,  fsm:8,  stroke:.75},  m:{size:20, fs:12,fsm:11,stroke:1}},
+      {name:'Default',  d:{size:20,fs:11, fsm:10, stroke:1},    m:{size:24, fs:14,fsm:13,stroke:1.25}},
+      {name:'Medium',   d:{size:28,fs:15, fsm:14, stroke:1.25}, m:{size:32, fs:18,fsm:17,stroke:1.5}},
+      {name:'Large',    d:{size:36,fs:19, fsm:18, stroke:1.5},  m:{size:40, fs:22,fsm:21,stroke:2}},
+      {name:'X-Large',  d:{size:48,fs:25, fsm:24, stroke:2},    m:{size:56, fs:30,fsm:29,stroke:2}},
+      {name:'2X-Large', d:{size:64,fs:33, fsm:32, stroke:3},    m:{size:72, fs:38,fsm:37,stroke:3}},
+      {name:'3X-Large', d:{size:96,fs:49, fsm:48, stroke:4},    m:{size:104,fs:54,fsm:53,stroke:4}},
+    ];
+    const ARC_CONTROLS = [
+      {name:'Small',   path:'Control/Size/Small',   d:20,m:24},
+      {name:'Default', path:'Control/Size/Default', d:28,m:36},
+      {name:'Large',   path:'Control/Size/Large',   d:40,m:48},
+      {name:'Lg Font Pad Y', path:'Control/Large Font Padding Y', d:10,m:12},
+      {name:'Bubble Pad X',  path:'Bubble/Padding X',  d:14,m:16},
+      {name:'Bubble Pad Y',  path:'Bubble/Padding Y',  d:10,m:10},
+      {name:'Measure/Body',  path:'Measure/Body',      d:520,m:520},
+    ];
+    const ARC_ICONS = [
+      {name:'Small',   d:12,m:16},
+      {name:'Default', d:16,m:20},
+      {name:'Mid 2',   d:18,m:22},
+      {name:'Medium',  d:20,m:24},
+      {name:'Large',   d:24,m:28},
+      {name:'X-Large', d:32,m:36},
+    ];
+    const ARC_CORNERS = [
+      {name:'Square',    d:4, m:6},
+      {name:'Square ×2', d:6, m:8},
+      {name:'Circle',    d:14,m:18},
+      {name:'Circle ×2', d:20,m:24},
+      {name:'Bubble',    d:20,m:21},
+    ];
+    const ARC_GUTTERS = [
+      {name:'Default', d:20,m:20},
+      {name:'Small',   d:16,m:16},
+    ];
+    const ARC_GAPS = [
+      {name:'Small',        d:4,m:6},
+      {name:'Medium',       d:6,m:8},
+      {name:'Large',        d:8,m:10},
+      {name:'Split Medium', d:5,m:7},
+    ];
+
+    function buildArcadeTables() {
+      // Avatars
+      const atb = document.getElementById('arc-avatar-tbody');
+      ARC_AVATARS.forEach(a => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><span style="font-family:var(--ff-text);font-size:12px;font-weight:500;">${a.name}</span><span style="display:block;font-family:var(--ff-mono);font-size:9px;color:var(--sub);margin-top:2px;">Component/Avatar/${a.name}</span></td>
+          <td><span id="av-${a.name}" style="display:inline-flex;align-items:center;justify-content:center;border-radius:50%;width:${a.d.size}px;height:${a.d.size}px;background:color-mix(in srgb,var(--blue) 12%,transparent);border:1px solid color-mix(in srgb,var(--blue) 30%,transparent);color:var(--blue);font-family:var(--ff-mono);font-weight:500;font-size:${a.d.fsm}px;">AB</span></td>
+          <td class="arc-dv">${a.d.size}px</td><td class="arc-dv">${a.d.fs}px</td><td class="arc-dv">${a.d.fsm}px</td><td class="arc-dv">${a.d.stroke}px</td>
+        `;
+        atb.appendChild(tr);
+      });
+
+      // Generic simple table builder
+      function buildTable(tbodyId, rows) {
+        const tb = document.getElementById(tbodyId);
+        rows.forEach(r => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td><span style="font-family:var(--ff-text);font-size:11px;font-weight:500;">${r.name}</span></td><td class="arc-dv">${r.d}px</td><td class="arc-mv">${r.m}px</td>`;
+          tb.appendChild(tr);
+        });
+      }
+      buildTable('arc-ctrl-tbody',   ARC_CONTROLS);
+      buildTable('arc-icon-tbody',   ARC_ICONS);
+      buildTable('arc-corner-tbody', ARC_CORNERS);
+      buildTable('arc-gutter-tbody', ARC_GUTTERS);
+      buildTable('arc-gap-tbody',    ARC_GAPS);
     }
 
     /* ── Theme toggle ── */
@@ -1189,6 +1568,10 @@ The quick brown fox jumps over the lazy dog.
 
     /* Init */
     updateTester();
+    buildArcadeTables();
+    applyDevice('desktop');
+    // Highlight desktop spec badges on load
+    document.querySelectorAll('.arc-d').forEach(el => el.classList.add('active'));
   </script>
 </body>
 </html>
