@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-device="desktop">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcade 0.3 — Type Styles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Chip fonts ── */
+    @font-face { font-family: 'Chip Display'; src: url('./fonts/ChipDisp-Regular.woff')       format('woff'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Chip Display'; src: url('./fonts/ChipDisp-Semibold.woff')      format('woff'); font-weight: 600; font-style: normal; }
+    @font-face { font-family: 'Chip Display'; src: url('./fonts/ChipDisp-Bold.woff')          format('woff'); font-weight: 700; font-style: normal; }
+    @font-face { font-family: 'Chip Display'; src: url('./fonts/ChipDisp-Black.woff')         format('woff'); font-weight: 900; font-style: normal; }
+    @font-face { font-family: 'Chip Display'; src: url('./fonts/ChipDisp-Italic.woff')        format('woff'); font-weight: 400; font-style: italic; }
+    @font-face { font-family: 'Chip Display'; src: url('./fonts/ChipDisp-BoldItalic.woff')   format('woff'); font-weight: 700; font-style: italic; }
+
+    @font-face { font-family: 'Chip Text'; src: url('./fonts/ChipText-Regular.woff')  format('woff'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Chip Text'; src: url('./fonts/ChipText-Medium.woff')   format('woff'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'Chip Text'; src: url('./fonts/ChipText-Semibold.woff') format('woff'); font-weight: 600; font-style: normal; }
+    @font-face { font-family: 'Chip Text'; src: url('./fonts/ChipText-Bold.woff')     format('woff'); font-weight: 700; font-style: normal; }
+    @font-face { font-family: 'Chip Text'; src: url('./fonts/ChipText-Italic.woff')   format('woff'); font-weight: 400; font-style: italic; }
+
+    @font-face { font-family: 'Chip Mono'; src: url('./fonts/ChipMono-Regular.woff') format('woff'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Chip Mono'; src: url('./fonts/ChipMono-Medium.woff')  format('woff'); font-weight: 500; font-style: normal; }
+
+    /* ── Colour tokens ── */
+    :root {
+      --bg:      #FFFFFF;
+      --bg-alt:  #F5F5F7;
+      --bg-raised: #FFFFFF;
+      --ink:     #151420;
+      --sub:     #737380;
+      --sep:     #E0E0E6;
+      --blue:    #0053E7;
+      --green:   #4B8100;
+      --orange:  #D14600;
+      --red:     #D10000;
+      /* Arcade optical weights — light mode */
+      --w-regular: 400;
+      --w-medium:  500;
+      --w-bold:    700;
+    }
+    [data-theme="dark"] {
+      --bg:      #211E20;
+      --bg-alt:  #2A2728;
+      --bg-raised: #2A2728;
+      --ink:     #FFFFFF;
+      --sub:     #A6A6AD;
+      --sep:     #474448;
+      --blue:    #199BFF;
+      --green:   #7DB52A;
+      --orange:  #FF7A38;
+      --red:     #FF5A5A;
+      /* Arcade optical weights — dark mode (slightly lighter for legibility) */
+      --w-regular: 400;
+      --w-medium:  500;
+      --w-bold:    700;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Chip Text', 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      transition: background .18s, color .18s;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Toolbar ── */
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 24px;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--sep);
+    }
+    .toolbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-right: auto;
+    }
+    .toolbar-title {
+      font-family: 'Chip Text', 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .toolbar-version {
+      font-family: 'Chip Mono', 'Roboto Mono', monospace;
+      font-size: 10px;
+      color: var(--sub);
+      background: var(--bg-alt);
+      border: 1px solid var(--sep);
+      border-radius: 4px;
+      padding: 2px 6px;
+    }
+    .pill-group {
+      display: flex;
+      gap: 2px;
+      background: var(--bg-alt);
+      padding: 3px;
+      border-radius: 8px;
+      border: 1px solid var(--sep);
+    }
+    .pill-btn {
+      font-family: 'Chip Text', 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 11px;
+      border: none;
+      background: transparent;
+      color: var(--sub);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all .13s;
+      white-space: nowrap;
+    }
+    .pill-btn.active {
+      background: var(--bg);
+      color: var(--ink);
+      box-shadow: 0 1px 3px rgba(0,0,0,.14), 0 0 0 .5px color-mix(in srgb, var(--ink) 10%, transparent);
+    }
+    .toolbar-sep { width: 1px; height: 20px; background: var(--sep); }
+
+    /* ── Page ── */
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 36px 40px 100px;
+    }
+
+    /* ── Section header ── */
+    .sec {
+      margin-top: 48px;
+    }
+    .sec:first-child { margin-top: 0; }
+    .sec-hdr {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--sep);
+      margin-bottom: 0;
+    }
+    .sec-hdr-name {
+      font-family: 'Chip Text', 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--sub);
+    }
+    .sec-hdr-detail {
+      font-family: 'Chip Mono', 'Roboto Mono', monospace;
+      font-size: 10px;
+      color: var(--sub);
+      opacity: .6;
+    }
+
+    /* ── Type rows ── */
+    .type-row {
+      display: grid;
+      grid-template-columns: 180px 1fr auto;
+      align-items: start;
+      gap: 0 24px;
+      padding: 14px 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--sep) 55%, transparent);
+      min-height: 0;
+    }
+    .type-row:last-child { border-bottom: none; }
+    .type-row:nth-child(even) {
+      background: var(--bg-alt);
+      margin: 0 -12px;
+      padding: 14px 12px;
+    }
+
+    /* Style name + meta */
+    .row-label { padding-top: 3px; }
+    .row-label-name {
+      font-family: 'Chip Text', 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .row-label-sub {
+      font-family: 'Chip Mono', 'Roboto Mono', monospace;
+      font-size: 9px;
+      color: var(--sub);
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+
+    /* Sample text */
+    .row-sample {
+      overflow: hidden;
+    }
+
+    /* Spec badges */
+    .row-spec {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      padding-top: 3px;
+      white-space: nowrap;
+    }
+    .spec-badge {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .spec-device {
+      font-family: 'Chip Mono', 'Roboto Mono', monospace;
+      font-size: 9px;
+      font-weight: 500;
+      color: var(--sub);
+      background: var(--bg-alt);
+      border: 1px solid var(--sep);
+      border-radius: 3px;
+      padding: 1px 5px;
+      letter-spacing: .02em;
+    }
+    .spec-device.active {
+      background: color-mix(in srgb, var(--blue) 10%, transparent);
+      border-color: color-mix(in srgb, var(--blue) 30%, transparent);
+      color: var(--blue);
+    }
+    .spec-values {
+      font-family: 'Chip Mono', 'Roboto Mono', monospace;
+      font-size: 10px;
+      color: var(--sub);
+      font-feature-settings: "tnum" 1;
+    }
+
+    /* ── Token tables ── */
+    .token-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .token-table th {
+      font-family: 'Chip Text', 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--sub);
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--sep);
+    }
+    .token-table td {
+      font-family: 'Chip Mono', 'Roboto Mono', monospace;
+      font-size: 11px;
+      padding: 8px 12px;
+      border-bottom: 1px solid color-mix(in srgb, var(--sep) 50%, transparent);
+      color: var(--ink);
+      vertical-align: middle;
+    }
+    .token-table tr:last-child td { border-bottom: none; }
+    .token-table tr:nth-child(even) td { background: var(--bg-alt); }
+
+    .token-name {
+      font-family: 'Chip Text', 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .token-path {
+      font-family: 'Chip Mono', 'Roboto Mono', monospace;
+      font-size: 10px;
+      color: var(--sub);
+      display: block;
+      margin-top: 1px;
+    }
+
+    .val-d { color: var(--ink); }
+    .val-m { color: var(--sub); }
+
+    /* Visual token swatch */
+    .token-vis {
+      display: inline-block;
+      border-radius: 3px;
+      background: var(--blue);
+      height: 8px;
+      vertical-align: middle;
+    }
+
+    /* ── Two-column grid for token tables ── */
+    .token-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .token-panel {
+      border: 1px solid var(--sep);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .token-panel-hdr {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--sep);
+      padding: 8px 12px;
+      font-family: 'Chip Text', 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--sub);
+    }
+
+    /* ── Avatar size preview ── */
+    .avatar-preview {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--blue) 15%, transparent);
+      border: 1px solid color-mix(in srgb, var(--blue) 30%, transparent);
+      color: var(--blue);
+      font-family: 'Chip Mono', 'Roboto Mono', monospace;
+      font-weight: 500;
+      flex-shrink: 0;
+      vertical-align: middle;
+    }
+
+    /* ── Corner radius preview ── */
+    .corner-preview {
+      display: inline-block;
+      background: color-mix(in srgb, var(--blue) 12%, transparent);
+      border: 1.5px solid color-mix(in srgb, var(--blue) 35%, transparent);
+      width: 28px;
+      height: 28px;
+      vertical-align: middle;
+    }
+
+    /* ── Control height previews ── */
+    .control-preview {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: color-mix(in srgb, var(--blue) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--blue) 30%, transparent);
+      border-radius: 6px;
+      color: var(--blue);
+      font-family: 'Chip Text', 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 0 10px;
+      white-space: nowrap;
+    }
+
+    /* ── Weight note ── */
+    .weight-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: color-mix(in srgb, var(--orange) 8%, transparent);
+      border: 1px solid color-mix(in srgb, var(--orange) 25%, transparent);
+      border-radius: 5px;
+      padding: 7px 12px;
+      font-family: 'Chip Text', 'Inter', sans-serif;
+      font-size: 11px;
+      color: var(--orange);
+      margin-bottom: 24px;
+    }
+    .weight-note strong { font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <div class="toolbar-logo">
+      <span class="toolbar-title">Arcade</span>
+      <span class="toolbar-version">v0.3</span>
+    </div>
+
+    <div class="pill-group">
+      <button class="pill-btn active" id="dev-desktop" onclick="setDevice('desktop')">Desktop</button>
+      <button class="pill-btn"        id="dev-mobile"  onclick="setDevice('mobile')">Mobile</button>
+    </div>
+
+    <div class="pill-group">
+      <button class="pill-btn active" id="theme-light" onclick="setTheme('light')">Light</button>
+      <button class="pill-btn"        id="theme-dark"  onclick="setTheme('dark')">Dark</button>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- ══════════════════════════════════════════════
+         TYPOGRAPHY
+    ══════════════════════════════════════════════ -->
+
+    <!-- Optical weight note -->
+    <div class="weight-note">
+      <strong>Optical weights:</strong>
+      Arcade uses fractional font weights that adjust per mode —
+      Regular 460→440, Medium 520→500, Bold 650→620 (light→dark).
+      Static WOFF files render at nearest whole weight.
+    </div>
+
+    <!-- Titles -->
+    <div class="sec">
+      <div class="sec-hdr">
+        <span class="sec-hdr-name">Titles</span>
+        <span class="sec-hdr-detail">Chip Display Variable · Bold (650/620)</span>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Title Large</div>
+          <div class="row-label-sub">Typography/TitleLarge<br>Chip Display · Bold</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-titlelarge" style="font-family:'Chip Display','Inter',sans-serif; font-weight:700; color:var(--ink);">The quick brown fox</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge">
+            <span class="spec-device" id="sp-tl-d">D</span>
+            <span class="spec-values" id="sv-tl-d">40px / 46lh / 0ls</span>
+          </div>
+          <div class="spec-badge">
+            <span class="spec-device" id="sp-tl-m">M</span>
+            <span class="spec-values" id="sv-tl-m">44px / 46lh / 0ls</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Title 1</div>
+          <div class="row-label-sub">Typography/Title1<br>Chip Display · Bold</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-title1" style="font-family:'Chip Display','Inter',sans-serif; font-weight:700; color:var(--ink);">The quick brown fox jumps over</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-t1-d">D</span><span class="spec-values">33px / 40lh / 0ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-t1-m">M</span><span class="spec-values">36px / 38lh / 0ls</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Title 2</div>
+          <div class="row-label-sub">Typography/Title2<br>Chip Display · Bold</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-title2" style="font-family:'Chip Display','Inter',sans-serif; font-weight:700; color:var(--ink);">The quick brown fox jumps over the lazy dog</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-t2-d">D</span><span class="spec-values">27px / 36lh / 0ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-t2-m">M</span><span class="spec-values">30px / 32lh / 0ls</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Title 3</div>
+          <div class="row-label-sub">Typography/Title3<br>Chip Display · Bold</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-title3" style="font-family:'Chip Display','Inter',sans-serif; font-weight:700; color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-t3-d">D</span><span class="spec-values">22px / 28lh / 0ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-t3-m">M</span><span class="spec-values">25px / 28lh / 0ls</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="sec">
+      <div class="sec-hdr">
+        <span class="sec-hdr-name">Body</span>
+        <span class="sec-hdr-detail">Chip Text Variable · Regular (460/440) and Bold (650/620)</span>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Body Large</div>
+          <div class="row-label-sub">Typography/Body Large<br>Chip Text · Regular</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-bodylarge" style="font-family:'Chip Text','Inter',sans-serif; font-weight:400; color:var(--ink);">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-bl-d">D</span><span class="spec-values">19px / 26lh / −0.19ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-bl-m">M</span><span class="spec-values">20px / 26lh / −0.20ls</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Body Large Bold</div>
+          <div class="row-label-sub">Typography/Body Large Bold<br>Chip Text · Bold</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-bodylarge" style="font-family:'Chip Text','Inter',sans-serif; font-weight:700; color:var(--ink);">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device">D</span><span class="spec-values">= Body Large size</span></div>
+          <div class="spec-badge"><span class="spec-device">M</span><span class="spec-values">= Body Large size</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Body</div>
+          <div class="row-label-sub">Typography/Body<br>Chip Text · Regular</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-body" style="font-family:'Chip Text','Inter',sans-serif; font-weight:400; color:var(--ink);">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-b-d">D</span><span class="spec-values">15px / 24lh / −0.15ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-b-m">M</span><span class="spec-values">16px / 24lh / −0.16ls</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Body Bold</div>
+          <div class="row-label-sub">Typography/Body Bold<br>Chip Text · Bold</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-body" style="font-family:'Chip Text','Inter',sans-serif; font-weight:700; color:var(--ink);">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device">D</span><span class="spec-values">= Body size</span></div>
+          <div class="spec-badge"><span class="spec-device">M</span><span class="spec-values">= Body size</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Body Small</div>
+          <div class="row-label-sub">Typography/Body Small<br>Chip Text · Regular</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-bodysmall" style="font-family:'Chip Text','Inter',sans-serif; font-weight:400; color:var(--ink);">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-bs-d">D</span><span class="spec-values">13px / 20lh / −0.13ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-bs-m">M</span><span class="spec-values">16px / 22lh / −0.16ls</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Body Small Bold</div>
+          <div class="row-label-sub">Typography/Body Small Bold<br>Chip Text · Bold</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-bodysmall" style="font-family:'Chip Text','Inter',sans-serif; font-weight:700; color:var(--ink);">The quick brown fox jumps over the lazy dog. Pack my box with five dozen liquor jugs. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device">D</span><span class="spec-values">= Body Small size</span></div>
+          <div class="spec-badge"><span class="spec-device">M</span><span class="spec-values">= Body Small size</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- System -->
+    <div class="sec">
+      <div class="sec-hdr">
+        <span class="sec-hdr-name">System</span>
+        <span class="sec-hdr-detail">Chip Text Variable · Regular (460/440) and Medium (520/500)</span>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">System Large</div>
+          <div class="row-label-sub">Typography/System Large<br>Chip Text · Regular</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-syslg" style="font-family:'Chip Text','Inter',sans-serif; font-weight:400; color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-sl-d">D</span><span class="spec-values">15px / 20lh / −0.15ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-sl-m">M</span><span class="spec-values">17px / 24lh / −0.16ls</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">System</div>
+          <div class="row-label-sub">Typography/System<br>Chip Text · Regular</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-sys" style="font-family:'Chip Text','Inter',sans-serif; font-weight:400; color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-s-d">D</span><span class="spec-values">13px / 16lh / −0.13ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-s-m">M</span><span class="spec-values">14px / 20lh / −0.14ls</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">System Medium</div>
+          <div class="row-label-sub">Typography/System Medium<br>Chip Text · Medium</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-sys" style="font-family:'Chip Text','Inter',sans-serif; font-weight:500; color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device">D</span><span class="spec-values">= System size</span></div>
+          <div class="spec-badge"><span class="spec-device">M</span><span class="spec-values">= System size</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">System Small</div>
+          <div class="row-label-sub">Typography/System Small<br>Chip Text · Regular</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-syssm" style="font-family:'Chip Text','Inter',sans-serif; font-weight:400; color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-ss-d">D</span><span class="spec-values">11px / 16lh / −0.11ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-ss-m">M</span><span class="spec-values">12px / 20lh / −0.12ls</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">System Small Medium</div>
+          <div class="row-label-sub">Typography/System Small Medium<br>Chip Text · Medium</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-syssm" style="font-family:'Chip Text','Inter',sans-serif; font-weight:500; color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device">D</span><span class="spec-values">= System Small size</span></div>
+          <div class="spec-badge"><span class="spec-device">M</span><span class="spec-values">= System Small size</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Callout</div>
+          <div class="row-label-sub">Typography/Callout<br>Chip Text · Regular</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-callout" style="font-family:'Chip Text','Inter',sans-serif; font-weight:400; color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-ca-d">D</span><span class="spec-values">12px / 18lh / −0.12ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-ca-m">M</span><span class="spec-values">14px / 18lh / −0.14ls</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Caption</div>
+          <div class="row-label-sub">Typography/Caption<br>Chip Text · Regular</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-caption" style="font-family:'Chip Text','Inter',sans-serif; font-weight:400; color:var(--ink);">The quick brown fox jumps over the lazy dog. 0 1 2 3 4 5 6 7 8 9</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-cp-d">D</span><span class="spec-values">10px / 16lh / −0.15ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-cp-m">M</span><span class="spec-values">12px / 16lh / −0.12ls</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code + Numerical -->
+    <div class="sec">
+      <div class="sec-hdr">
+        <span class="sec-hdr-name">Code &amp; Numerical</span>
+        <span class="sec-hdr-detail">Chip Mono · Medium (520/500) for Code, Regular (460/440) for Numerical</span>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Code</div>
+          <div class="row-label-sub">Typography/Code<br>Chip Mono · Medium</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-code" style="font-family:'Chip Mono','Roboto Mono',monospace; font-weight:500; color:var(--ink); font-feature-settings:'tnum' 1;">const value = token.resolve(device.mode);</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-co-d">D</span><span class="spec-values">13px / 18lh / −0.40ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-co-m">M</span><span class="spec-values">16px / 20lh / −0.20ls</span></div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="row-label">
+          <div class="row-label-name">Numerical</div>
+          <div class="row-label-sub">Typography/Numerical<br>Chip Mono · Regular</div>
+        </div>
+        <div class="row-sample">
+          <span class="ts-numerical" style="font-family:'Chip Mono','Roboto Mono',monospace; font-weight:400; color:var(--ink); font-feature-settings:'tnum' 1;">0 1 2 3 4 5 6 7 8 9   1,284   99%   $4.20   −0.15</span>
+        </div>
+        <div class="row-spec">
+          <div class="spec-badge"><span class="spec-device" id="sp-nu-d">D</span><span class="spec-values">10px / 10lh / 0ls</span></div>
+          <div class="spec-badge"><span class="spec-device" id="sp-nu-m">M</span><span class="spec-values">11px / 11lh / 0ls</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         COMPONENT TOKENS
+    ══════════════════════════════════════════════ -->
+    <div class="sec">
+      <div class="sec-hdr">
+        <span class="sec-hdr-name">Component Tokens — Avatar</span>
+        <span class="sec-hdr-detail">Component/Avatar/*</span>
+      </div>
+
+      <div class="token-panel" style="margin-top:0;">
+        <table class="token-table">
+          <thead>
+            <tr>
+              <th style="width:120px;">Size</th>
+              <th>Preview</th>
+              <th style="width:100px;">Diameter</th>
+              <th style="width:100px;">Font size</th>
+              <th style="width:100px;">Mono size</th>
+              <th style="width:80px;">Stroke</th>
+            </tr>
+          </thead>
+          <tbody id="avatar-tbody"><!-- JS --></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-hdr">
+        <span class="sec-hdr-name">Component Tokens — Controls &amp; Icons</span>
+        <span class="sec-hdr-detail">_Experiment/Components/*</span>
+      </div>
+
+      <div class="token-grid">
+        <div class="token-panel">
+          <div class="token-panel-hdr">Control sizes</div>
+          <table class="token-table">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Preview</th>
+                <th style="width:80px;">Desktop</th>
+                <th style="width:80px;">Mobile</th>
+              </tr>
+            </thead>
+            <tbody id="control-tbody"><!-- JS --></tbody>
+          </table>
+        </div>
+
+        <div class="token-panel">
+          <div class="token-panel-hdr">Icon sizes</div>
+          <table class="token-table">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Preview</th>
+                <th style="width:80px;">Desktop</th>
+                <th style="width:80px;">Mobile</th>
+              </tr>
+            </thead>
+            <tbody id="icon-tbody"><!-- JS --></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-hdr">
+        <span class="sec-hdr-name">Component Tokens — Corners &amp; Spacing</span>
+        <span class="sec-hdr-detail">_Experiment/Corners/* · _Experiment/Components/Control/Gap/*</span>
+      </div>
+
+      <div class="token-grid">
+        <div class="token-panel">
+          <div class="token-panel-hdr">Corner radius</div>
+          <table class="token-table">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Preview</th>
+                <th style="width:80px;">Desktop</th>
+                <th style="width:80px;">Mobile</th>
+              </tr>
+            </thead>
+            <tbody id="corner-tbody"><!-- JS --></tbody>
+          </table>
+        </div>
+
+        <div class="token-panel">
+          <div class="token-panel-hdr">Control gap</div>
+          <table class="token-table">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th style="width:80px;">Desktop</th>
+                <th style="width:80px;">Mobile</th>
+              </tr>
+            </thead>
+            <tbody id="gap-tbody"><!-- JS --></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page -->
+
+  <script>
+    const html = document.documentElement;
+    let currentDevice = 'desktop';
+
+    /* ── Device data ── */
+    const STYLES = {
+      'ts-titlelarge': { d: { sz:40, lh:46, ls:0  }, m: { sz:44, lh:46, ls:0   } },
+      'ts-title1':     { d: { sz:33, lh:40, ls:0  }, m: { sz:36, lh:38, ls:0   } },
+      'ts-title2':     { d: { sz:27, lh:36, ls:0  }, m: { sz:30, lh:32, ls:0   } },
+      'ts-title3':     { d: { sz:22, lh:28, ls:0  }, m: { sz:25, lh:28, ls:0   } },
+      'ts-bodylarge':  { d: { sz:19, lh:26, ls:-.19 }, m: { sz:20, lh:26, ls:-.20 } },
+      'ts-body':       { d: { sz:15, lh:24, ls:-.15 }, m: { sz:16, lh:24, ls:-.16 } },
+      'ts-bodysmall':  { d: { sz:13, lh:20, ls:-.13 }, m: { sz:16, lh:22, ls:-.16 } },
+      'ts-syslg':      { d: { sz:15, lh:20, ls:-.15 }, m: { sz:17, lh:24, ls:-.16 } },
+      'ts-sys':        { d: { sz:13, lh:16, ls:-.13 }, m: { sz:14, lh:20, ls:-.14 } },
+      'ts-syssm':      { d: { sz:11, lh:16, ls:-.11 }, m: { sz:12, lh:20, ls:-.12 } },
+      'ts-callout':    { d: { sz:12, lh:18, ls:-.12 }, m: { sz:14, lh:18, ls:-.14 } },
+      'ts-caption':    { d: { sz:10, lh:16, ls:-.15 }, m: { sz:12, lh:16, ls:-.12 } },
+      'ts-code':       { d: { sz:13, lh:18, ls:-.40 }, m: { sz:16, lh:20, ls:-.20 } },
+      'ts-numerical':  { d: { sz:10, lh:10, ls:0  }, m: { sz:11, lh:11, ls:0   } },
+    };
+
+    const AVATARS = [
+      { name:'Small',   d:{ size:16, fs:9,  fsm:8,  stroke:.75 }, m:{ size:20, fs:12, fsm:11, stroke:1    } },
+      { name:'Default', d:{ size:20, fs:11, fsm:10, stroke:1   }, m:{ size:24, fs:14, fsm:13, stroke:1.25 } },
+      { name:'Medium',  d:{ size:28, fs:15, fsm:14, stroke:1.25}, m:{ size:32, fs:18, fsm:17, stroke:1.5  } },
+      { name:'Large',   d:{ size:36, fs:19, fsm:18, stroke:1.5 }, m:{ size:40, fs:22, fsm:21, stroke:2    } },
+      { name:'X-Large', d:{ size:48, fs:25, fsm:24, stroke:2   }, m:{ size:56, fs:30, fsm:29, stroke:2    } },
+      { name:'2X-Large',d:{ size:64, fs:33, fsm:32, stroke:3   }, m:{ size:72, fs:38, fsm:37, stroke:3    } },
+      { name:'3X-Large',d:{ size:96, fs:49, fsm:48, stroke:4   }, m:{ size:104,fs:54, fsm:53, stroke:4    } },
+    ];
+
+    const CONTROLS = [
+      { name:'Small',  path:'Control/Size/Small',   d:20, m:24 },
+      { name:'Default',path:'Control/Size/Default', d:28, m:36 },
+      { name:'Large',  path:'Control/Size/Large',   d:40, m:48 },
+    ];
+
+    const ICONS = [
+      { name:'Small',   path:'Icon/Small',   d:12, m:16 },
+      { name:'Default', path:'Icon/Default', d:16, m:20 },
+      { name:'Mid 2',   path:'Icon/Mid 2',   d:18, m:22 },
+      { name:'Medium',  path:'Icon/Medium',  d:20, m:24 },
+      { name:'Large',   path:'Icon/Large',   d:24, m:28 },
+      { name:'X-Large', path:'Icon/X-Large', d:32, m:36 },
+    ];
+
+    const CORNERS = [
+      { name:'Square',    path:'Corners/Square',    d:4,  m:6  },
+      { name:'Square ×2', path:'Corners/Square x2', d:6,  m:8  },
+      { name:'Circle',    path:'Corners/Circle',    d:14, m:18 },
+      { name:'Circle ×2', path:'Corners/Circle x2', d:20, m:24 },
+      { name:'Bubble',    path:'Corners/Bubble',    d:20, m:21 },
+    ];
+
+    const GAPS = [
+      { name:'Small',       path:'Control/Gap/Small',       d:4, m:6  },
+      { name:'Medium',      path:'Control/Gap/Medium',      d:6, m:8  },
+      { name:'Large',       path:'Control/Gap/Large',       d:8, m:10 },
+      { name:'Split Medium',path:'Control/Gap/Split Medium', d:5, m:7  },
+    ];
+
+    /* ── Init tables ── */
+    function buildTables() {
+      // Avatars
+      const atb = document.getElementById('avatar-tbody');
+      AVATARS.forEach(a => {
+        const tr = document.createElement('tr');
+        tr.dataset.avatar = a.name;
+        tr.innerHTML = `
+          <td><span class="token-name">${a.name}</span><span class="token-path">Component/Avatar/${a.name}</span></td>
+          <td><span class="avatar-preview av-${a.name}" style="width:${a.d.size}px;height:${a.d.size}px;font-size:${a.d.fsm}px;">AB</span></td>
+          <td class="val-d av-d-${a.name}">${a.d.size}px</td>
+          <td class="av-fs-${a.name}">${a.d.fs}px</td>
+          <td class="av-fsm-${a.name}">${a.d.fsm}px</td>
+          <td class="av-st-${a.name}">${a.d.stroke}px</td>
+        `;
+        atb.appendChild(tr);
+      });
+
+      // Controls
+      const ctb = document.getElementById('control-tbody');
+      CONTROLS.forEach(c => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><span class="token-name">${c.name}</span><span class="token-path">_Experiment/${c.path}</span></td>
+          <td><span class="control-preview" style="height:${c.d}px;" data-ctrl="${c.name}">${c.name}</span></td>
+          <td class="ctrl-d-${c.name}">${c.d}px</td>
+          <td class="ctrl-m-${c.name}">${c.m}px</td>
+        `;
+        ctb.appendChild(tr);
+      });
+
+      // Icons
+      const itb = document.getElementById('icon-tbody');
+      ICONS.forEach(i => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><span class="token-name">${i.name}</span><span class="token-path">_Experiment/${i.path}</span></td>
+          <td>
+            <svg width="${i.d}" height="${i.d}" viewBox="0 0 24 24" fill="none" style="display:inline-block;vertical-align:middle;" data-icon="${i.name}">
+              <circle cx="12" cy="12" r="10" stroke="var(--blue)" stroke-width="1.5"/>
+              <line x1="12" y1="8" x2="12" y2="16" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="8" y1="12" x2="16" y2="12" stroke="var(--blue)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </td>
+          <td class="icon-d-${i.name.replace(/[\s\/]/g,'_')}">${i.d}px</td>
+          <td class="icon-m-${i.name.replace(/[\s\/]/g,'_')}">${i.m}px</td>
+        `;
+        itb.appendChild(tr);
+      });
+
+      // Corners
+      const cortb = document.getElementById('corner-tbody');
+      CORNERS.forEach(c => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><span class="token-name">${c.name}</span><span class="token-path">_Experiment/${c.path}</span></td>
+          <td><span class="corner-preview" style="border-radius:${c.d}px;" data-corner="${c.name}"></span></td>
+          <td class="cor-d-${c.name.replace(/[\s×]/g,'_')}">${c.d}px</td>
+          <td class="cor-m-${c.name.replace(/[\s×]/g,'_')}">${c.m}px</td>
+        `;
+        cortb.appendChild(tr);
+      });
+
+      // Gaps
+      const gtb = document.getElementById('gap-tbody');
+      GAPS.forEach(g => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><span class="token-name">${g.name}</span><span class="token-path">_Experiment/${g.path}</span></td>
+          <td>${g.d}px</td>
+          <td>${g.m}px</td>
+        `;
+        gtb.appendChild(tr);
+      });
+    }
+
+    /* ── Apply device styles ── */
+    function applyDevice(dev) {
+      const isDesktop = dev === 'desktop';
+
+      // Typography samples
+      Object.entries(STYLES).forEach(([cls, data]) => {
+        const vals = isDesktop ? data.d : data.m;
+        document.querySelectorAll('.' + cls).forEach(el => {
+          el.style.fontSize      = vals.sz + 'px';
+          el.style.lineHeight    = vals.lh + 'px';
+          el.style.letterSpacing = vals.ls + 'px';
+        });
+      });
+
+      // Spec badge highlights
+      document.querySelectorAll('.spec-device').forEach(el => {
+        if (el.id) {
+          const isD = el.id.endsWith('-d');
+          const isM = el.id.endsWith('-m');
+          el.classList.toggle('active', (isDesktop && isD) || (!isDesktop && isM));
+        }
+      });
+
+      // Avatar previews
+      AVATARS.forEach(a => {
+        const vals = isDesktop ? a.d : a.m;
+        const el = document.querySelector('.av-' + a.name);
+        if (el) {
+          el.style.width    = vals.size + 'px';
+          el.style.height   = vals.size + 'px';
+          el.style.fontSize = vals.fsm + 'px';
+        }
+      });
+
+      // Control previews
+      CONTROLS.forEach(c => {
+        const h = isDesktop ? c.d : c.m;
+        document.querySelectorAll(`[data-ctrl="${c.name}"]`).forEach(el => {
+          el.style.height = h + 'px';
+        });
+      });
+
+      // Icon previews
+      ICONS.forEach(i => {
+        const s = isDesktop ? i.d : i.m;
+        document.querySelectorAll(`[data-icon="${i.name}"]`).forEach(el => {
+          el.setAttribute('width', s);
+          el.setAttribute('height', s);
+        });
+      });
+
+      // Corner previews
+      CORNERS.forEach(c => {
+        const r = isDesktop ? c.d : c.m;
+        document.querySelectorAll(`[data-corner="${c.name}"]`).forEach(el => {
+          el.style.borderRadius = r + 'px';
+        });
+      });
+    }
+
+    function setDevice(dev) {
+      currentDevice = dev;
+      html.dataset.device = dev;
+      document.getElementById('dev-desktop').classList.toggle('active', dev === 'desktop');
+      document.getElementById('dev-mobile').classList.toggle('active', dev === 'mobile');
+      applyDevice(dev);
+    }
+
+    function setTheme(t) {
+      html.dataset.theme = t;
+      document.getElementById('theme-light').classList.toggle('active', t === 'light');
+      document.getElementById('theme-dark').classList.toggle('active', t === 'dark');
+    }
+
+    /* ── Boot ── */
+    buildTables();
+    applyDevice('desktop');
+
+    // Highlight Desktop spec badges on load
+    document.querySelectorAll('.spec-device[id$="-d"]').forEach(el => el.classList.add('active'));
+  </script>
+</body>
+</html>
