@@ -965,18 +965,35 @@
           </select>
         </div>
         <div class="ctrl-grp">
-          <label class="ctrl-lbl" for="t-size">Size</label>
-          <select class="ctrl-sel" id="t-size" onchange="updateTester()">
-            <option value="40">40px — D1</option>
-            <option value="33">33px — D2</option>
-            <option value="27">27px — D3</option>
-            <option value="22">22px — D4</option>
-            <option value="19">19px — T1</option>
-            <option value="15" selected>15px — T2</option>
-            <option value="13">13px — T3</option>
-            <option value="12">12px — T4</option>
-            <option value="11">11px — T5</option>
-            <option value="10">10px — T6</option>
+          <label class="ctrl-lbl" for="t-preset">Preset</label>
+          <select class="ctrl-sel" id="t-preset" onchange="applyPreset()">
+            <optgroup label="Titles">
+              <option data-cat="display" data-sz="40" data-lh="46" data-ls="0" data-wt="700">Title Large · 40px</option>
+              <option data-cat="display" data-sz="33" data-lh="40" data-ls="0" data-wt="700">Title 1 · 33px</option>
+              <option data-cat="display" data-sz="27" data-lh="36" data-ls="0" data-wt="700">Title 2 · 27px</option>
+              <option data-cat="display" data-sz="22" data-lh="28" data-ls="0" data-wt="700">Title 3 · 22px</option>
+            </optgroup>
+            <optgroup label="Body">
+              <option data-cat="text" data-sz="19" data-lh="26" data-ls="-0.19" data-wt="400">Body Large · 19px</option>
+              <option data-cat="text" data-sz="19" data-lh="26" data-ls="-0.19" data-wt="700">Body Large Bold · 19px</option>
+              <option data-cat="text" data-sz="15" data-lh="24" data-ls="-0.15" data-wt="400" selected>Body · 15px</option>
+              <option data-cat="text" data-sz="15" data-lh="24" data-ls="-0.15" data-wt="700">Body Bold · 15px</option>
+              <option data-cat="text" data-sz="13" data-lh="20" data-ls="-0.13" data-wt="400">Body Small · 13px</option>
+              <option data-cat="text" data-sz="13" data-lh="20" data-ls="-0.13" data-wt="700">Body Small Bold · 13px</option>
+            </optgroup>
+            <optgroup label="System">
+              <option data-cat="text" data-sz="15" data-lh="20" data-ls="-0.15" data-wt="400">System Large · 15px</option>
+              <option data-cat="text" data-sz="13" data-lh="16" data-ls="-0.13" data-wt="400">System · 13px</option>
+              <option data-cat="text" data-sz="13" data-lh="16" data-ls="-0.13" data-wt="500">System Medium · 13px</option>
+              <option data-cat="text" data-sz="11" data-lh="16" data-ls="-0.11" data-wt="400">System Small · 11px</option>
+              <option data-cat="text" data-sz="11" data-lh="16" data-ls="-0.11" data-wt="500">System Small Medium · 11px</option>
+              <option data-cat="text" data-sz="12" data-lh="18" data-ls="-0.12" data-wt="400">Callout · 12px</option>
+              <option data-cat="text" data-sz="10" data-lh="16" data-ls="-0.15" data-wt="400">Caption · 10px</option>
+            </optgroup>
+            <optgroup label="Code &amp; Numerical">
+              <option data-cat="mono" data-sz="13" data-lh="18" data-ls="-0.4" data-wt="500">Code · 13px</option>
+              <option data-cat="mono" data-sz="10" data-lh="10" data-ls="0" data-wt="400">Numerical · 10px</option>
+            </optgroup>
           </select>
         </div>
         <div class="ctrl-grp">
@@ -991,13 +1008,10 @@
         </div>
         <div class="ctrl-grp">
           <label class="ctrl-lbl" for="t-lh">Line Height</label>
-          <select class="ctrl-sel" id="t-lh" onchange="updateTester()">
-            <option value="1.0">1.0 × — Tight</option>
-            <option value="1.2">1.2 ×</option>
-            <option value="1.4" selected>1.4 × — Normal</option>
-            <option value="1.6">1.6 ×</option>
-            <option value="1.8">1.8 × — Loose</option>
-          </select>
+          <div class="ctrl-input-wrap">
+            <input class="ctrl-input" type="number" id="t-lh" value="24" step="1" min="8" max="120" oninput="updateTester()">
+            <span class="ctrl-input-unit">px</span>
+          </div>
         </div>
         <div class="ctrl-grp">
           <label class="ctrl-lbl" for="t-ls">Letter Spacing</label>
@@ -1477,7 +1491,6 @@ The quick brown fox jumps over the lazy dog.
 
     /* ── Type Tester ── */
     const CAT_WEIGHTS   = { display:[400,600,700,900], text:[400,500,600,700], mono:[400,500] };
-    const CAT_LH_DEFAULT = { display:1.1, text:1.4, mono:1.5 };
     const WEIGHT_NAMES  = {400:'Regular',500:'Medium',600:'SemiBold',700:'Bold',800:'ExtraBold',900:'Black'};
 
     function getFF(cat) {
@@ -1491,9 +1504,21 @@ The quick brown fox jumps over the lazy dog.
       return (f === 'chip' ? CHIP_LABELS : INTER_LABELS)[cat];
     }
 
+    function applyPreset() {
+      const sel = document.getElementById('t-preset');
+      const opt = sel.options[sel.selectedIndex];
+      document.getElementById('t-cat').value    = opt.dataset.cat;
+      document.getElementById('t-weight').value = opt.dataset.wt;
+      document.getElementById('t-lh').value     = opt.dataset.lh;
+      document.getElementById('t-ls').value     = opt.dataset.ls;
+      updateTester();
+    }
+
     function updateTester() {
       const cat    = document.getElementById('t-cat').value;
-      const size   = parseInt(document.getElementById('t-size').value);
+      const sel    = document.getElementById('t-preset');
+      const opt    = sel.options[sel.selectedIndex];
+      const size   = parseInt(opt.dataset.sz);
       const weight = parseInt(document.getElementById('t-weight').value);
       const lh     = parseFloat(document.getElementById('t-lh').value);
       const ls     = parseFloat(document.getElementById('t-ls').value) || 0;
@@ -1518,7 +1543,7 @@ The quick brown fox jumps over the lazy dog.
       ta.style.fontFamily           = ff;
       ta.style.fontSize             = size + 'px';
       ta.style.fontWeight           = w;
-      ta.style.lineHeight           = lh;
+      ta.style.lineHeight           = lh + 'px';
       ta.style.fontFeatureSettings  = tnum;
       ta.style.letterSpacing        = ls + 'px';
       ta.style.height = 'auto';
@@ -1526,7 +1551,7 @@ The quick brown fox jumps over the lazy dog.
 
       /* Meta */
       document.getElementById('t-info-main').textContent = `${size}px / ${WEIGHT_NAMES[w] || w}`;
-      document.getElementById('t-info-sub').textContent  = `${getFontLabel(cat)} · lh ${lh}`;
+      document.getElementById('t-info-sub').textContent  = `${getFontLabel(cat)} · lh ${lh}px`;
 
       /* Weight rows */
       const previewText = (ta.value || ta.placeholder).split('\n')[0].slice(0, 90);
@@ -1540,7 +1565,7 @@ The quick brown fox jumps over the lazy dog.
         lbl.textContent = `${WEIGHT_NAMES[ww]} ${ww}`;
         const samp = document.createElement('span');
         samp.className = 'weight-row-sample';
-        samp.style.cssText = `font-family:${ff};font-size:${size}px;font-weight:${ww};line-height:${lh};letter-spacing:${ls}px;font-feature-settings:${tnum};`;
+        samp.style.cssText = `font-family:${ff};font-size:${size}px;font-weight:${ww};line-height:${lh}px;letter-spacing:${ls}px;font-feature-settings:${tnum};`;
         samp.textContent = previewText;
         row.appendChild(lbl);
         row.appendChild(samp);
@@ -1553,7 +1578,7 @@ The quick brown fox jumps over the lazy dog.
         el.style.fontFamily          = ff;
         el.style.fontSize            = size + 'px';
         el.style.fontWeight          = w;
-        el.style.lineHeight          = lh;
+        el.style.lineHeight          = lh + 'px';
         el.style.letterSpacing       = ls + 'px';
         el.style.fontFeatureSettings = id === 'cs-nums' ? '"tnum" 1' : tnum;
       });
@@ -1567,7 +1592,7 @@ The quick brown fox jumps over the lazy dog.
     });
 
     /* Init */
-    updateTester();
+    applyPreset();
     buildArcadeTables();
     applyDevice('desktop');
     // Highlight desktop spec badges on load
