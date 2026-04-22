@@ -474,6 +474,108 @@
     }
     .tester-reset-btn:hover { color: var(--ink); border-color: var(--ink); }
 
+    /* ── Compare panes ── */
+    .panes-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+    .panes-bar-label {
+      font-family: var(--ff-text);
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--sub);
+    }
+    .panes-add-btn {
+      font-family: var(--ff-text);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--sub);
+      background: var(--bg-alt);
+      border: 1px solid var(--sep);
+      border-radius: 4px;
+      padding: 4px 9px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .panes-add-btn:hover { color: var(--ink); border-color: var(--ink); }
+    .panes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 12px;
+      align-items: start;
+    }
+    .pane {
+      border: 1px solid var(--sep);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .pane-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--sep);
+    }
+    .pane-preset-sel {
+      font-family: var(--ff-text);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--ink);
+      background: transparent;
+      border: none;
+      outline: none;
+      flex: 1;
+      min-width: 0;
+      cursor: pointer;
+    }
+    .pane-weight-input {
+      font-family: var(--ff-mono);
+      font-size: 11px;
+      color: var(--ink);
+      background: transparent;
+      border: none;
+      outline: none;
+      width: 40px;
+      text-align: right;
+    }
+    .pane-meta {
+      font-family: var(--ff-mono);
+      font-size: 9px;
+      color: var(--sub);
+      white-space: nowrap;
+    }
+    .pane-remove-btn {
+      font-size: 13px;
+      line-height: 1;
+      color: var(--sub);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 2px;
+      flex-shrink: 0;
+    }
+    .pane-remove-btn:hover { color: var(--ink); }
+    .pane-preview {
+      font-family: var(--ff-text);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--bg);
+      width: 100%;
+      box-sizing: border-box;
+      border: none;
+      outline: none;
+      resize: none;
+      padding: 14px;
+      min-height: 80px;
+    }
+
     .tester-meta-main {
       font-family: var(--ff-mono);
       font-size: 12px;
@@ -740,9 +842,9 @@
     <span class="toolbar-title">Type Specimen</span>
 
     <div class="pill-group">
-      <button class="pill-btn active" id="tab-specimen" onclick="switchTab('specimen')">Specimen</button>
-      <button class="pill-btn"        id="tab-tester"   onclick="switchTab('tester')">Type Tester</button>
+      <button class="pill-btn active" id="tab-tester"   onclick="switchTab('tester')">Type Tester</button>
       <button class="pill-btn"        id="tab-arcade"   onclick="switchTab('arcade')">Arcade 0.3</button>
+      <button class="pill-btn"        id="tab-specimen" onclick="switchTab('specimen')">Specimen</button>
     </div>
 
     <div class="toolbar-sep"></div>
@@ -769,7 +871,7 @@
     <!-- ═══════════════════════════════════════════
          SPECIMEN TAB
     ═══════════════════════════════════════════ -->
-    <div class="tab-panel active" id="panel-specimen">
+    <div class="tab-panel" id="panel-specimen">
 
       <!-- Display -->
       <div class="sec-hdr">
@@ -967,7 +1069,7 @@
     <!-- ═══════════════════════════════════════════
          TYPE TESTER TAB
     ═══════════════════════════════════════════ -->
-    <div class="tab-panel" id="panel-tester">
+    <div class="tab-panel active" id="panel-tester">
 
       <div class="tester-bar">
         <div class="ctrl-grp">
@@ -1012,13 +1114,9 @@
         </div>
         <div class="ctrl-grp">
           <label class="ctrl-lbl" for="t-weight">Weight</label>
-          <select class="ctrl-sel" id="t-weight" onchange="updateTester()">
-            <option value="400">Regular — 400</option>
-            <option value="500" selected>Medium — 500</option>
-            <option value="600">Semibold — 600</option>
-            <option value="700">Bold — 700</option>
-            <option value="900">Black — 900</option>
-          </select>
+          <div class="ctrl-input-wrap">
+            <input class="ctrl-input" type="number" id="t-weight" value="400" step="1" min="100" max="900" oninput="updateTester()">
+          </div>
         </div>
         <div class="ctrl-grp">
           <label class="ctrl-lbl" for="t-lh">Line Height</label>
@@ -1076,6 +1174,13 @@ The quick brown fox jumps over the lazy dog.
           </div>
         </div>
       </div>
+
+      <!-- Compare panes -->
+      <div class="panes-bar">
+        <span class="panes-bar-label">Compare</span>
+        <button class="panes-add-btn" onclick="addPane()">+ Add pane</button>
+      </div>
+      <div class="panes-grid" id="panes-grid"></div>
 
     </div><!-- /panel-tester -->
 
@@ -1541,17 +1646,7 @@ The quick brown fox jumps over the lazy dog.
       const lh     = parseFloat(document.getElementById('t-lh').value);
       const ls     = parseFloat(document.getElementById('t-ls').value) || 0;
 
-      /* Validate weight for category */
-      const valid = CAT_WEIGHTS[cat];
-      const wSel  = document.getElementById('t-weight');
-      let   w     = weight;
-      Array.from(wSel.options).forEach(o => {
-        o.disabled = !valid.includes(parseInt(o.value));
-      });
-      if (!valid.includes(w)) {
-        w = valid[0];
-        wSel.value = w;
-      }
+      const w = Math.min(900, Math.max(100, weight || 400));
 
       const ff = getFF(cat);
       const tnum = cat === 'mono' ? '"tnum" 1' : 'normal';
@@ -1608,6 +1703,79 @@ The quick brown fox jumps over the lazy dog.
       this.style.height = Math.max(this.scrollHeight, 120) + 'px';
       updateTester();
     });
+
+    /* ── Compare panes ── */
+    const PRESET_OPTIONS_HTML = document.getElementById('t-preset').innerHTML;
+    let paneCount = 0;
+
+    function addPane() {
+      paneCount++;
+      const id = 'pane-' + paneCount;
+
+      /* Grab current main tester state as defaults */
+      const mainPreset = document.getElementById('t-preset');
+      const mainOpt    = mainPreset.options[mainPreset.selectedIndex];
+      const defWt  = mainOpt.dataset.wt;
+      const defSz  = mainOpt.dataset.sz;
+      const defLh  = mainOpt.dataset.lh;
+      const defLs  = mainOpt.dataset.ls;
+      const defCat = mainOpt.dataset.cat;
+      const defText = document.getElementById('t-preview').value || document.getElementById('t-preview').placeholder;
+
+      const pane = document.createElement('div');
+      pane.className = 'pane';
+      pane.id = id;
+      pane.innerHTML = `
+        <div class="pane-header">
+          <select class="pane-preset-sel" onchange="updatePane('${id}')">
+            ${PRESET_OPTIONS_HTML}
+          </select>
+          <input class="pane-weight-input" type="number" value="${defWt}" min="100" max="900" step="1"
+            title="Weight" oninput="updatePane('${id}')">
+          <span class="pane-meta" id="${id}-meta">${defSz}px · lh ${defLh}px · ls ${defLs}px</span>
+          <button class="pane-remove-btn" onclick="removePane('${id}')" title="Remove">✕</button>
+        </div>
+        <textarea class="pane-preview" id="${id}-ta"
+          oninput="this.style.height='auto';this.style.height=Math.max(this.scrollHeight,80)+'px';updatePane('${id}')"
+        >${defText}</textarea>`;
+
+      document.getElementById('panes-grid').appendChild(pane);
+
+      /* Select the same preset as main tester */
+      const sel = pane.querySelector('.pane-preset-sel');
+      sel.selectedIndex = mainPreset.selectedIndex;
+
+      updatePane(id);
+    }
+
+    function removePane(id) {
+      document.getElementById(id)?.remove();
+    }
+
+    function updatePane(id) {
+      const pane = document.getElementById(id);
+      const sel  = pane.querySelector('.pane-preset-sel');
+      const opt  = sel.options[sel.selectedIndex];
+      const wt   = parseInt(pane.querySelector('.pane-weight-input').value) || 400;
+      const sz   = parseInt(opt.dataset.sz);
+      const lh   = parseFloat(opt.dataset.lh);
+      const ls   = parseFloat(opt.dataset.ls) || 0;
+      const cat  = opt.dataset.cat;
+      const ff   = getFF(cat);
+      const tnum = cat === 'mono' ? '"tnum" 1' : 'normal';
+
+      const ta = pane.querySelector('.pane-preview');
+      ta.style.fontFamily          = ff;
+      ta.style.fontSize            = sz + 'px';
+      ta.style.fontWeight          = wt;
+      ta.style.lineHeight          = lh + 'px';
+      ta.style.letterSpacing       = ls + 'px';
+      ta.style.fontFeatureSettings = tnum;
+      ta.style.height = 'auto';
+      ta.style.height = Math.max(ta.scrollHeight, 80) + 'px';
+
+      pane.querySelector(`#${id}-meta`).textContent = `${sz}px · lh ${lh}px · ls ${ls}px`;
+    }
 
     /* Init */
     applyPreset();
