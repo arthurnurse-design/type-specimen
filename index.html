@@ -1071,6 +1071,13 @@
     ═══════════════════════════════════════════ -->
     <div class="tab-panel active" id="panel-tester">
 
+      <!-- Compare panes -->
+      <div class="panes-bar">
+        <span class="panes-bar-label">Compare</span>
+        <button class="panes-add-btn" onclick="addPane()">+ Add pane</button>
+      </div>
+      <div class="panes-grid" id="panes-grid"></div>
+
       <div class="tester-bar">
         <div class="ctrl-grp">
           <label class="ctrl-lbl" for="t-cat">Category</label>
@@ -1142,12 +1149,10 @@
         </div>
       </div>
 
-      <!-- Compare panes -->
-      <div class="panes-bar">
-        <span class="panes-bar-label">Preview</span>
-        <button class="panes-add-btn" onclick="addPane()">+ Add pane</button>
-      </div>
-      <div class="panes-grid" id="panes-grid"></div>
+      <textarea class="tester-input" id="t-preview"
+        placeholder="Type here to preview your text…">Pack my box with five dozen liquor jugs.
+The quick brown fox jumps over the lazy dog.
+0 1 2 3 4 5 6 7 8 9   !@#$%^&*()</textarea>
 
       <!-- All weights at current size -->
       <div class="weights-section">
@@ -1646,15 +1651,22 @@
       const ff = getFF(cat);
       const tnum = cat === 'mono' ? '"tnum" 1' : 'normal';
 
+      /* Preview textarea */
+      const ta = document.getElementById('t-preview');
+      ta.style.fontFamily          = ff;
+      ta.style.fontSize            = size + 'px';
+      ta.style.fontWeight          = w;
+      ta.style.lineHeight          = lh + 'px';
+      ta.style.fontFeatureSettings = tnum;
+      ta.style.letterSpacing       = ls + 'px';
+      ta.style.height = 'auto';
+      ta.style.height = Math.max(ta.scrollHeight, 120) + 'px';
+
       /* Meta */
       document.getElementById('t-info-main').textContent = `${size}px / ${w}`;
       document.getElementById('t-info-sub').textContent  = `${getFontLabel(cat)} · lh ${lh}px`;
 
-      /* Update first pane if it exists, otherwise use default text */
-      const firstPaneTa = document.querySelector('#panes-grid .pane-preview');
-      const previewText = firstPaneTa
-        ? (firstPaneTa.value || firstPaneTa.placeholder).split('\n')[0].slice(0, 90)
-        : 'Pack my box with five dozen liquor jugs.';
+      const previewText = (ta.value || ta.placeholder).split('\n')[0].slice(0, 90);
       const rows = document.getElementById('t-weight-rows');
       rows.innerHTML = '';
       [400, 500, 600, 700, 900].forEach(ww => {
@@ -1684,6 +1696,13 @@
       });
     }
 
+    /* Auto-resize textarea */
+    document.getElementById('t-preview').addEventListener('input', function () {
+      this.style.height = 'auto';
+      this.style.height = Math.max(this.scrollHeight, 120) + 'px';
+      updateTester();
+    });
+
     /* ── Compare panes ── */
     const PRESET_OPTIONS_HTML = document.getElementById('t-preset').innerHTML;
     let paneCount = 0;
@@ -1700,10 +1719,8 @@
       const defLh  = mainOpt.dataset.lh;
       const defLs  = mainOpt.dataset.ls;
       const defCat = mainOpt.dataset.cat;
-      const existingTa = document.querySelector('#panes-grid .pane-preview');
-      const defText = existingTa
-        ? (existingTa.value || existingTa.placeholder)
-        : 'Pack my box with five dozen liquor jugs.\nThe quick brown fox jumps over the lazy dog.\n0 1 2 3 4 5 6 7 8 9   !@#$%^&*()';
+      const mainTa = document.getElementById('t-preview');
+      const defText = mainTa.value || mainTa.placeholder;
 
       const pane = document.createElement('div');
       pane.className = 'pane';
@@ -1758,14 +1775,10 @@
       ta.style.height = Math.max(ta.scrollHeight, 80) + 'px';
 
       pane.querySelector(`#${id}-meta`).textContent = `${sz}px · lh ${lh}px · ls ${ls}px`;
-
-      /* Keep weight rows / charset in sync with the first pane */
-      if (pane === document.querySelector('#panes-grid .pane')) updateTester();
     }
 
     /* Init */
     applyPreset();
-    addPane();
     buildArcadeTables();
     applyDevice('desktop');
     // Highlight desktop spec badges on load
