@@ -534,21 +534,24 @@
       min-width: 0;
       cursor: pointer;
     }
-    .pane-weight-input {
+    .pane-num-input {
       font-family: var(--ff-mono);
       font-size: 11px;
       color: var(--ink);
       background: transparent;
       border: none;
       outline: none;
-      width: 40px;
+      width: 38px;
       text-align: right;
     }
-    .pane-meta {
-      font-family: var(--ff-mono);
+    .pane-ctrl-lbl {
+      font-family: var(--ff-text);
       font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
       color: var(--sub);
-      white-space: nowrap;
+      flex-shrink: 0;
     }
     .pane-remove-btn {
       font-size: 13px;
@@ -1727,12 +1730,15 @@ The quick brown fox jumps over the lazy dog.
       pane.id = id;
       pane.innerHTML = `
         <div class="pane-header">
-          <select class="pane-preset-sel" onchange="updatePane('${id}')">
+          <select class="pane-preset-sel" onchange="applyPanePreset('${id}')">
             ${PRESET_OPTIONS_HTML}
           </select>
-          <input class="pane-weight-input" type="number" value="${defWt}" min="100" max="900" step="1"
-            title="Weight" oninput="updatePane('${id}')">
-          <span class="pane-meta" id="${id}-meta">${defSz}px · lh ${defLh}px · ls ${defLs}px</span>
+          <span class="pane-ctrl-lbl">wt</span>
+          <input class="pane-num-input" type="number" value="${defWt}" min="100" max="900" step="1" title="Weight" oninput="updatePane('${id}')">
+          <span class="pane-ctrl-lbl">lh</span>
+          <input class="pane-num-input pane-lh-input" type="number" value="${defLh}" min="8" max="120" step="1" title="Line height (px)" oninput="updatePane('${id}')">
+          <span class="pane-ctrl-lbl">ls</span>
+          <input class="pane-num-input pane-ls-input" type="number" value="${defLs}" min="-10" max="20" step="0.1" title="Letter spacing (px)" oninput="updatePane('${id}')">
           <button class="pane-remove-btn" onclick="removePane('${id}')" title="Remove">✕</button>
         </div>
         <textarea class="pane-preview" id="${id}-ta"
@@ -1756,10 +1762,10 @@ The quick brown fox jumps over the lazy dog.
       const pane = document.getElementById(id);
       const sel  = pane.querySelector('.pane-preset-sel');
       const opt  = sel.options[sel.selectedIndex];
-      const wt   = parseInt(pane.querySelector('.pane-weight-input').value) || 400;
+      const wt   = parseInt(pane.querySelector('.pane-num-input').value) || 400;
       const sz   = parseInt(opt.dataset.sz);
-      const lh   = parseFloat(opt.dataset.lh);
-      const ls   = parseFloat(opt.dataset.ls) || 0;
+      const lh   = parseFloat(pane.querySelector('.pane-lh-input').value);
+      const ls   = parseFloat(pane.querySelector('.pane-ls-input').value) || 0;
       const cat  = opt.dataset.cat;
       const ff   = getFF(cat);
       const tnum = cat === 'mono' ? '"tnum" 1' : 'normal';
@@ -1774,7 +1780,16 @@ The quick brown fox jumps over the lazy dog.
       ta.style.height = 'auto';
       ta.style.height = Math.max(ta.scrollHeight, 80) + 'px';
 
-      pane.querySelector(`#${id}-meta`).textContent = `${sz}px · lh ${lh}px · ls ${ls}px`;
+    }
+
+    function applyPanePreset(id) {
+      const pane = document.getElementById(id);
+      const sel  = pane.querySelector('.pane-preset-sel');
+      const opt  = sel.options[sel.selectedIndex];
+      pane.querySelector('.pane-num-input').value = opt.dataset.wt;
+      pane.querySelector('.pane-lh-input').value  = opt.dataset.lh;
+      pane.querySelector('.pane-ls-input').value  = opt.dataset.ls;
+      updatePane(id);
     }
 
     /* Init */
