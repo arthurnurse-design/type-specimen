@@ -539,11 +539,15 @@
       font-size: 11px;
       color: var(--ink);
       background: transparent;
-      border: none;
+      border: 1px solid transparent;
+      border-radius: 3px;
       outline: none;
-      width: 38px;
+      width: 44px;
       text-align: right;
+      padding: 1px 3px;
     }
+    .pane-num-input:focus { border-color: var(--sep); }
+    .pane-ls-input { width: 52px; }
     .pane-ctrl-lbl {
       font-family: var(--ff-text);
       font-size: 9px;
