@@ -542,12 +542,15 @@
       border: 1px solid transparent;
       border-radius: 3px;
       outline: none;
-      width: 44px;
+      width: 48px;
       text-align: right;
       padding: 1px 3px;
+      -moz-appearance: textfield;
     }
+    .pane-num-input::-webkit-inner-spin-button,
+    .pane-num-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
     .pane-num-input:focus { border-color: var(--sep); }
-    .pane-ls-input { width: 52px; }
+    .pane-ls-input { width: 58px; }
     .pane-ctrl-lbl {
       font-family: var(--ff-text);
       font-size: 9px;
